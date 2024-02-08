@@ -1,7 +1,13 @@
 import { Box, Container, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const offersData = [
+interface SingleCardProps {
+  src: string;
+  title: string;
+  content: string;
+}
+
+const offersData: SingleCardProps[] = [
   {
     src: "./imgs/whatWeOffer/kebab.png",
     title: "Caterings",
@@ -28,7 +34,7 @@ const offersData = [
   },
 ];
 
-const SingleCard = ({ src, title, content }) => {
+const SingleCard: React.FC<SingleCardProps> = ({ src, title, content }) => {
   return (
     <Box>
       <Link to="/" className="no-underline text-black">
@@ -59,12 +65,12 @@ function WhatWeOffer() {
 
         <Box className="grid grid-cols-2 md:grid-cols-4 justify-around gap-5">
           {offersData &&
-            offersData.map((i, x) => (
+            offersData.map((item, index) => (
               <SingleCard
-                src={i.src}
-                title={i.title}
-                content={i.content}
-                key={x}
+                src={item.src}
+                title={item.title}
+                content={item.content}
+                key={index}
               />
             ))}
         </Box>
@@ -74,5 +80,3 @@ function WhatWeOffer() {
 }
 
 export default WhatWeOffer;
-
-// We also offer unique services for your events

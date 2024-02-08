@@ -4,7 +4,13 @@ import { MdOutlineEmojiFoodBeverage } from "react-icons/md";
 import { PiBowlFood } from "react-icons/pi";
 import { LuGlassWater, LuCakeSlice } from "react-icons/lu";
 
-const browseData = [
+interface BrowseMenuItemProps {
+  title: string;
+  desc: string;
+  icon: React.ElementType;
+}
+
+const browseData: BrowseMenuItemProps[] = [
   {
     title: "Breakfast",
     desc: "In the new era of technology we look in the future with certainty and pride for our life.",
@@ -26,6 +32,7 @@ const browseData = [
     icon: LuCakeSlice,
   },
 ];
+
 function BrowseMenu() {
   return (
     <Box className="my-5 relative">
@@ -39,12 +46,12 @@ function BrowseMenu() {
         </Typography>
         <Box className="flex gap-x-3 flex-wrap md:flex-nowrap justify-center">
           {browseData &&
-            browseData.map((i, x) => (
+            browseData.map((item, index) => (
               <BrowseMenuItem
-                title={i.title}
-                desc={i.desc}
-                icon={i.icon}
-                key={x}
+                title={item.title}
+                desc={item.desc}
+                icon={item.icon}
+                key={index}
               />
             ))}
         </Box>
@@ -53,8 +60,12 @@ function BrowseMenu() {
   );
 }
 
-const BrowseMenuItem = ({ title, desc, icon }) => {
-  const renderIcon = (iconName) => {
+const BrowseMenuItem: React.FC<BrowseMenuItemProps> = ({
+  title,
+  desc,
+  icon,
+}) => {
+  const renderIcon = (iconName: React.ElementType) => {
     const Icon = iconName;
     return (
       <Icon className="text-3xl mx-auto my-3 p-3 rounded-full bg-[#DBDFD0] text-[#474747]" />
