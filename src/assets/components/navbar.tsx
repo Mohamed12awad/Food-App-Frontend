@@ -13,10 +13,15 @@ import { SiProbot as AdbIcon } from "react-icons/si";
 
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const pages = ["Home", "about", "Products", "Pricing", "Blog"];
+const pages = [
+  { name: "Home", to: "/" },
+  { name: "about", to: "/about" },
+  { name: "Products", to: "/" },
+  { name: "Pricing", to: "/" },
+  { name: "Blog", to: "/" },
+];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -48,8 +53,8 @@ function ResponsiveAppBar() {
             <Typography
               variant="h6"
               noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
+              component={Link}
+              to="/"
               className="hidden md:flex text-2xl  main-font italic mr-3 font-bold no-underline text-inherit"
             >
               Bistro Bliss
@@ -66,10 +71,7 @@ function ResponsiveAppBar() {
                 <MenuIcon />
               </IconButton>
             </Box>
-            <AdbIcon
-              className="sm:flex md:hidden me-2 text-xl"
-              color="AD343E"
-            />
+
             <Typography
               variant="h5"
               noWrap
@@ -78,21 +80,27 @@ function ResponsiveAppBar() {
               className="flex text-xl main-font italic md:hidden mr-2 flex-grow  font-bold tracking-wide no-underline"
               color="inherit"
             >
+              <AdbIcon
+                className="sm:flex md:hidden me-2 text-xl"
+                color="AD343E"
+              />
               Bistro Bliss
             </Typography>
             <Box className="flex-grow hidden md:flex justify-center">
               {pages.map((page) => (
                 <Button
-                  key={page}
+                  key={page.name}
+                  component={Link}
+                  to={page.to}
                   className="block text-black capitalize rounded-full"
                   variant="text"
                   color="info"
                 >
-                  {page}
+                  {page.name}
                 </Button>
               ))}
             </Box>
-            <Box sx={{ flexGrow: 0 }}>
+            <Box>
               <Tooltip title="Open settings">
                 <Button
                   className="capitalize border border-black border-solid rounded-full text-black px-5"
@@ -128,13 +136,26 @@ function ResponsiveAppBar() {
           </Typography>
 
           <List>
-            {pages.map((page) => (
-              <ListItem key={page} onClick={handleCloseDrawer}>
-                <Typography variant="body1" textAlign="center">
-                  {page}
-                </Typography>
-              </ListItem>
-            ))}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                margin: "20px 0",
+              }}
+            >
+              {pages.map((page) => (
+                <Button
+                  onClick={handleCloseDrawer}
+                  key={page.name}
+                  component={Link}
+                  to={page.to}
+                  sx={{ display: "block", color: "black" }}
+                  variant="text"
+                >
+                  {page.name}
+                </Button>
+              ))}
+            </Box>
           </List>
         </Box>
       </SwipeableDrawer>

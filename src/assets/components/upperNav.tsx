@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import { CgMail } from "react-icons/cg";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaSnapchat } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 import { MdOutlineLocalPhone } from "react-icons/md";
@@ -20,12 +20,18 @@ function UpperNav() {
             <p className="text-sm">yummy@bistrobliss</p>
           </div>
         </div>
-        <div className="flex gap-x-1">
-          <a href="#" className="text-white">
-            <FaFacebook />
+        <div className="flex gap-x-1 align-middle">
+          <a href="#">
+            <FaFacebook className="p-1 rounded-full bg-[#F9F9F7]/20 text-white" />
           </a>
-          <a href="#" className="text-white">
-            <FaSquareXTwitter />
+          <a href="#">
+            <FaSquareXTwitter className="p-1 rounded-full bg-[#F9F9F7]/30 text-white" />
+          </a>
+          <a href="#">
+            <FaInstagram className="p-1 rounded-full bg-[#F9F9F7]/30 text-white" />
+          </a>
+          <a href="#">
+            <FaSnapchat className="p-1 rounded-full bg-[#F9F9F7]/30 text-white" />
           </a>
         </div>
       </Container>

@@ -44,7 +44,7 @@ function BrowseMenu() {
           We consider all the drivers of change gives you the components you
           need to change to create a truly happens.
         </Typography>
-        <Box className="flex gap-x-3 flex-wrap md:flex-nowrap justify-center">
+        <Box className="grid lg:grid-cols-4 sm:grid-cols-2 gap-x-3 justify-center">
           {browseData &&
             browseData.map((item, index) => (
               <BrowseMenuItem
@@ -72,7 +72,7 @@ const BrowseMenuItem: React.FC<BrowseMenuItemProps> = ({
     );
   };
   return (
-    <Box className="flex p-8 flex-col w-1/4 my-5 rounded-xl justify-center align-middle border-solid border border-[#DBDFD0]">
+    <Box className="flex p-8 flex-col  my-5 rounded-xl justify-center align-middle border-solid border border-[#DBDFD0]">
       {renderIcon(icon)}
       <Typography variant="h6" className="text-center font-bold">
         {title}

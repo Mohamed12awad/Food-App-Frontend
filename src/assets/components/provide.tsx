@@ -7,7 +7,7 @@ function Provide() {
     <section className="relative bg-[#F9F9F7] py-12">
       <Container className="grid grid-flow-row grid-cols-1 md:grid-cols-2 min-h-[500px]">
         <Box className="relative">
-          <div className="w-[75%]">
+          <div className="w-[75%] mb-5 sm:mb-0">
             <img src="./imgs/image1.png" alt="" className="w-full rounded-xl" />
           </div>
           <div className="absolute right-0 bottom-0 bg-[#474747] w-48 h-48 rounded-xl p-8 text-white">

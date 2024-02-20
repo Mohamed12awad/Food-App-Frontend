@@ -6,13 +6,27 @@ import {
   MdOutlineLocationOn,
 } from "react-icons/md";
 import { SiProbot } from "react-icons/si";
-import { Link } from "react-router-dom";
 
+const pages = ["Home", "about", "Pricing", "blogs", "Contact", "Delivery"];
+const UtilityPages = [
+  "Start Here",
+  "Styleguide",
+  "404 Not Found",
+  "Changelog",
+  "Licenses",
+  "View More",
+];
+const instaImgs = [
+  "./imgs/blogs/1.png",
+  "./imgs/blogs/2.png",
+  "./imgs/blogs/3.png",
+  "./imgs/blogs/4.png",
+];
 function Footer() {
   return (
     <footer className="bg-[#474747]">
       <Container>
-        <Box className="grid grid-cols-2 md:grid-cols-3 py-8 gap-5">
+        <Box className="md:grid md:grid-cols-3 py-8 gap-5">
           <div className="flex flex-col gap-y-5">
             <Typography
               variant="h6"
@@ -38,34 +52,17 @@ function Footer() {
               <MdOutlineLocationOff className="p-1 rounded-full bg-[#AD343E] text-white" />
             </Box>
           </div>
-          <div className="flex text-white justify-around">
+          <div className="flex text-white justify-around my-5 md:my-0">
             <List>
               <Typography variant="h6" className="">
                 Pages
               </Typography>
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>Home</ListItem>
-              </Link>
-
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>About</ListItem>
-              </Link>
-
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>Pricing</ListItem>
-              </Link>
-
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>Blog</ListItem>
-              </Link>
-
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>Contact</ListItem>
-              </Link>
-
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>Delivery</ListItem>
-              </Link>
+              {pages &&
+                pages.map((i, x) => (
+                  <a href="#" className="no-underline text-gray-300">
+                    <ListItem key={x}>{i}</ListItem>
+                  </a>
+                ))}
             </List>
             {/* ---------------------------------------------- */}
 
@@ -73,62 +70,23 @@ function Footer() {
               <Typography variant="h6" className="">
                 Utility Pages
               </Typography>
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>Start Here</ListItem>
-              </Link>
-
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>Styleguide</ListItem>
-              </Link>
-
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>404 Not Found</ListItem>
-              </Link>
-
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>Licenses</ListItem>
-              </Link>
-
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>Changelog</ListItem>
-              </Link>
-
-              <Link to="/" className="no-underline text-gray-300">
-                <ListItem>View More</ListItem>
-              </Link>
+              {UtilityPages &&
+                UtilityPages.map((i, x) => (
+                  <a href="#" className="no-underline text-gray-300">
+                    <ListItem key={x}>{i}</ListItem>
+                  </a>
+                ))}
             </List>
           </div>
           <div className="text-white col-start-1 md:col-start-3 col-end-3 md:col-end-4">
             <Typography variant="h6">Follow Us On Instagram</Typography>
             <Box className="my-5 grid grid-cols-2 gap-5">
-              <div>
-                <img
-                  src="./imgs/blogs/2.png"
-                  className="rounded-lg w-full"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  src="./imgs/blogs/1.png"
-                  className="rounded-lg w-full"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  src="./imgs/blogs/3.png"
-                  className="rounded-lg w-full"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  src="./imgs/blogs/4.png"
-                  className="rounded-lg w-full"
-                  alt=""
-                />
-              </div>
+              {instaImgs &&
+                instaImgs.map((i, x) => (
+                  <a href="#">
+                    <img src={i} key={x} className="rounded-lg w-full" alt="" />
+                  </a>
+                ))}
             </Box>
           </div>
         </Box>

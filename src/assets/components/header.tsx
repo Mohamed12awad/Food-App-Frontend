@@ -7,14 +7,14 @@ function Header() {
       <Container className="flex flex-col justify-center align-middle h-full">
         <Typography
           variant="h2"
-          className="tracking-wide text-center main-font"
+          className="tracking-wide text-center main-font text-5xl md:text-7xl"
         >
           Best food for
           <br /> your taste
         </Typography>
         <Typography variant="body1" className="text-center my-5">
           Discover delectable cuisine and unforgettable moments
-          <br /> in our welcoming, culinary haven.
+          <br className="hidden md:flex" /> in our welcoming, culinary haven.
         </Typography>
         <Box className="gap-x-3 flex justify-center">
           <Tooltip title="Open settings">
