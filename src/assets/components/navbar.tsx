@@ -18,9 +18,9 @@ import { Link } from "react-router-dom";
 const pages = [
   { name: "Home", to: "/" },
   { name: "about", to: "/about" },
-  { name: "Products", to: "/" },
-  { name: "Pricing", to: "/" },
-  { name: "Blog", to: "/" },
+  { name: "menu", to: "/menu" },
+  { name: "pages", to: "/blog" },
+  { name: "contact", to: "/" },
 ];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -103,6 +103,8 @@ function ResponsiveAppBar() {
             <Box>
               <Tooltip title="Open settings">
                 <Button
+                  component={Link}
+                  to="/book-table"
                   className="capitalize border border-black border-solid rounded-full text-black px-5"
                   variant="text"
                 >

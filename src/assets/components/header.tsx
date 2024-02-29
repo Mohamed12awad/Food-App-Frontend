@@ -1,5 +1,6 @@
 import { Box, Container, Typography, Tooltip, Button } from "@mui/material";
 // import bgImage from "./../imgs/head.svg";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -19,6 +20,8 @@ function Header() {
         <Box className="gap-x-3 flex justify-center">
           <Tooltip title="Open settings">
             <Button
+              component={Link}
+              to="/book-table"
               className="capitalize bg-[#AD343E] rounded-full px-5"
               variant="contained"
             >
@@ -27,6 +30,8 @@ function Header() {
           </Tooltip>
           <Tooltip title="Open settings">
             <Button
+              component={Link}
+              to="/menu"
               className="capitalize border border-black border-solid rounded-full text-black px-5"
               variant="text"
             >

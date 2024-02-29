@@ -17,10 +17,10 @@ const UtilityPages = [
   "View More",
 ];
 const instaImgs = [
-  "./imgs/blogs/1.png",
-  "./imgs/blogs/2.png",
-  "./imgs/blogs/3.png",
-  "./imgs/blogs/4.png",
+  "/imgs/blogs/1.png",
+  "/imgs/blogs/2.png",
+  "/imgs/blogs/3.png",
+  "/imgs/blogs/4.png",
 ];
 function Footer() {
   return (
@@ -59,8 +59,8 @@ function Footer() {
               </Typography>
               {pages &&
                 pages.map((i, x) => (
-                  <a href="#" className="no-underline text-gray-300">
-                    <ListItem key={x}>{i}</ListItem>
+                  <a href="#" key={x} className="no-underline text-gray-300">
+                    <ListItem>{i}</ListItem>
                   </a>
                 ))}
             </List>
@@ -72,8 +72,8 @@ function Footer() {
               </Typography>
               {UtilityPages &&
                 UtilityPages.map((i, x) => (
-                  <a href="#" className="no-underline text-gray-300">
-                    <ListItem key={x}>{i}</ListItem>
+                  <a href="#" key={x} className="no-underline text-gray-300">
+                    <ListItem>{i}</ListItem>
                   </a>
                 ))}
             </List>
@@ -83,8 +83,8 @@ function Footer() {
             <Box className="my-5 grid grid-cols-2 gap-5">
               {instaImgs &&
                 instaImgs.map((i, x) => (
-                  <a href="#">
-                    <img src={i} key={x} className="rounded-lg w-full" alt="" />
+                  <a href="#" key={x}>
+                    <img src={i} className="rounded-lg w-full" alt="" />
                   </a>
                 ))}
             </Box>

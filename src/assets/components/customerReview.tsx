@@ -75,8 +75,9 @@ function CustomerReview() {
         </Typography>
         <Box className="grid grid-cols-1 md:grid-cols-3 gap-5 my-12">
           {reviewData &&
-            reviewData.map((i) => (
+            reviewData.map((i, x) => (
               <SingleReview
+                key={x}
                 title={i.title}
                 content={i.content}
                 imgSrc={i.imgSrc}
