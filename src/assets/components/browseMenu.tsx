@@ -83,7 +83,7 @@ const BrowseMenuItem: React.FC<BrowseMenuItemProps> = ({
       <Typography
         variant="body2"
         component={Link}
-        to="/"
+        to="/menu"
         className="text-center no-underline font-bold text-[#AD343E] my-3"
       >
         Explore Menu

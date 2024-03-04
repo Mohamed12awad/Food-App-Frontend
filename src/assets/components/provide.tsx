@@ -10,7 +10,7 @@ function Provide() {
           <div className="w-[75%] mb-5 sm:mb-0">
             <img src="./imgs/image1.png" alt="" className="w-full rounded-xl" />
           </div>
-          <div className="absolute right-0 bottom-0 bg-[#474747] w-48 h-48 rounded-xl p-8 text-white">
+          <div className="absolute right-0 bottom-0 bg-[#474747] w-48 h-48 rounded-xl sm:p-8 p-4 text-white">
             <Typography variant="h6" className="mb-3">
               Come and visit us
             </Typography>

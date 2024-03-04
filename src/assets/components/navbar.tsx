@@ -19,7 +19,7 @@ const pages = [
   { name: "Home", to: "/" },
   { name: "about", to: "/about" },
   { name: "menu", to: "/menu" },
-  { name: "pages", to: "/blog" },
+  { name: "blogs", to: "/blogs" },
   { name: "contact", to: "/" },
 ];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -75,8 +75,8 @@ function ResponsiveAppBar() {
             <Typography
               variant="h5"
               noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
+              component={Link}
+              to="/"
               className="flex text-xl main-font italic md:hidden mr-2 flex-grow  font-bold tracking-wide no-underline"
               color="inherit"
             >
@@ -128,6 +128,9 @@ function ResponsiveAppBar() {
           <Typography
             variant="h6"
             noWrap
+            component={Link}
+            to="/"
+            sx={{ textDecoration: "none", color: "#000" }}
             className="hidden md:flex text-2xl main-font italic mr-3 font-bold no-underline text-inherit"
           >
             <AdbIcon

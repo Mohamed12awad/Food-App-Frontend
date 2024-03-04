@@ -23,3 +23,4 @@ cat.mp4
 *.njsproj
 *.sln
 *.sw?
+.env

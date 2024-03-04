@@ -10,10 +10,10 @@ import Menu from "./assets/pages/menu";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import BookTable from "./assets/pages/bookTable";
 import MenuItem from "./assets/pages/menuItem";
+import BlogsPage from "./assets/pages/blogs";
 
-// https://food-app-backend-5874.onrender.com/graphql
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql",
+  uri: process.env.API_URL,
   cache: new InMemoryCache(),
 });
 
@@ -29,6 +29,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/menu/:id" element={<MenuItem />} />
           <Route path="/book-table" element={<BookTable />} />
+          <Route path="/blogs" element={<BlogsPage />} />
         </Routes>
         <Footer />
       </Router>

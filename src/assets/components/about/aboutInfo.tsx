@@ -37,8 +37,8 @@ function AboutInfo() {
           </Typography>
           <div className="feeds grid gap-5 grid-cols-2 my-8">
             {AboutInfoItemData &&
-              AboutInfoItemData.map((i) => (
-                <AboutInfoItem title={i.title} sub={i.sub} />
+              AboutInfoItemData.map((i, x) => (
+                <AboutInfoItem key={x} title={i.title} sub={i.sub} />
               ))}
           </div>
         </div>

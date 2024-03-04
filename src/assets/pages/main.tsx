@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Blogs from "../components/blogs";
 import BrowseMenu from "../components/browseMenu";
 import CustomerReview from "../components/customerReview";
@@ -7,6 +8,10 @@ import Provide from "../components/provide";
 import WhatWeOffer from "../components/whatWeOffer";
 
 const Main = () => {
+  useEffect(() => {
+    /* Editing MetaData title */
+    document.title = "Food: Welcome";
+  });
   return (
     <>
       <Header />

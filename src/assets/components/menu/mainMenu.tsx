@@ -79,7 +79,7 @@ function MainMenu() {
               dataFilters.map((i, x) => (
                 <Button
                   key={x}
-                  className={`capitalize text-black rounded-full px-5 shadow-none  focus:bg-[#AD343E] focus:text-white`}
+                  className={`capitalize text-black rounded-full px-5 shadow-none active:bg-[#AD343E] focus:bg-[#AD343E] focus:text-white`}
                   onClick={() => setSearchCategory(i.category)}
                   variant="text"
                 >
@@ -89,13 +89,21 @@ function MainMenu() {
           </Box>
         </Box>
         <Box className="grid my-5 grid-cols-2 md:grid-cols-4 gap-5 justify-between">
-          {loading && (
-            <div className="flex flex-col gap-5">
-              <Skeleton variant="rectangular" width={210} height={60} />
-              <Skeleton variant="rounded" width={210} height={60} />
-            </div>
+          {loading &&
+            Array.from({ length: 8 }).map((_, x) => (
+              <div key={x} className="flex flex-col gap-5 my-5">
+                <Skeleton variant="rounded" width={210} height={60} />
+                <Skeleton variant="rectangular" width={210} height={45} />
+              </div>
+            ))}
+          {error && !loading && (
+            <Typography
+              variant="h5"
+              className="text-center capitalize font-bold mx-auto col-span-4"
+            >
+              Please refresh....
+            </Typography>
           )}
-          {error && !loading && <p>Please refresh....</p>}
           {data &&
             data.getAllMenuItems.map((i: dataItem, x: number) => (
               <MainMenuCard
@@ -107,12 +115,14 @@ function MainMenu() {
               />
             ))}
           <div className="col-span-4 flex justify-center">
-            <Button
-              className="bg-black text-white px-5 rounded-full"
-              onClick={handleSeeMore}
-            >
-              See more
-            </Button>
+            {data && (
+              <Button
+                className="bg-black text-white px-5 rounded-full"
+                onClick={handleSeeMore}
+              >
+                See more
+              </Button>
+            )}
           </div>
         </Box>
       </Container>

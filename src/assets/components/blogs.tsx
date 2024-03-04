@@ -98,19 +98,19 @@ function Blogs() {
   return (
     <section className="my-12">
       <Container>
-        <div className="blog-head flex justify-between">
-          <Typography variant="h3" className="main-font">
+        <div className="blog-head flex flex-col md:flex-row  justify-between">
+          <Typography variant="h3" className="main-font text-4xl md:text-5xl">
             Our Blog & Articles
           </Typography>
-          <Link to="/blogs" className="my-auto">
-            <Button
-              className="bg-[#AD343E] rounded-full capitalize px-5 py-3"
-              variant="contained"
-              size="small"
-            >
-              Read All Articles
-            </Button>
-          </Link>
+          <Button
+            component={Link}
+            to="/blogs"
+            className="bg-[#AD343E] rounded-full capitalize text-center ms-48 md:ms-auto px-5 py-3 my-3"
+            variant="contained"
+            size="small"
+          >
+            Read All Articles
+          </Button>
         </div>
         <Box className="my-5 grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-5 min-h-[500px]">
           {blogsData &&
