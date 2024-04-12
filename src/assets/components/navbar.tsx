@@ -14,17 +14,21 @@ import { SiProbot as AdbIcon } from "react-icons/si";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import List from "@mui/material/List";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth";
 
 const pages = [
   { name: "Home", to: "/" },
   { name: "about", to: "/about" },
   { name: "menu", to: "/menu" },
   { name: "blogs", to: "/blogs" },
-  { name: "contact", to: "/" },
+  { name: "contact", to: "/contact-us" },
 ];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
+  const { isAuthenticated } = useAuth();
+  const userState = isAuthenticated();
+
   const [drawer, setDrawer] = React.useState(false);
 
   const handleOpenDrawer = () => {
@@ -101,14 +105,14 @@ function ResponsiveAppBar() {
               ))}
             </Box>
             <Box>
-              <Tooltip title="Open settings">
+              <Tooltip title={userState ? "Book A Table" : "Sign UP"}>
                 <Button
                   component={Link}
-                  to="/book-table"
+                  to={userState ? "/book-table" : "/signup"}
                   className="capitalize border border-black border-solid rounded-full text-black px-5"
                   variant="text"
                 >
-                  book a table
+                  {userState ? "book a table" : "Sign Up"}
                 </Button>
               </Tooltip>
             </Box>

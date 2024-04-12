@@ -1,14 +1,6 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  CardActionArea,
-  Container,
-  Typography,
-  Box,
-} from "@mui/material";
+import { Button, Container, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
+import SingleBlog from "./BlogCard";
 
 interface Blog {
   date: string;
@@ -49,51 +41,6 @@ const blogsData: Blog[] = [
   },
 ];
 
-const SingleBlog: React.FC<Blog> = ({ index, date, title, content, src }) => {
-  return (
-    <Card className="first:col-end-3 first:col-start-1 first:row-start-1 first:row-end-3 shadow-lg">
-      <CardActionArea>
-        <Link to="/" className="no-underline text-black">
-          <CardMedia
-            component="img"
-            alt="green iguana"
-            image={src}
-            className="object-cover h-1/2"
-          />
-          <CardContent className="py-3 my-auto">
-            <Typography
-              gutterBottom
-              variant="body2"
-              className="text-xs font-medium pb-2 m-0 text-gray-500"
-              component="div"
-            >
-              {date}
-            </Typography>
-            <Typography
-              gutterBottom
-              variant="h6"
-              className="m-0 text-base"
-              component="div"
-            >
-              {title}
-            </Typography>
-            {index === 0 && ( // Render the third Typography only for the first child
-              <Typography
-                gutterBottom
-                variant="body2"
-                component="div"
-                className="text-gray-500 text-sm"
-              >
-                {content}
-              </Typography>
-            )}
-          </CardContent>
-        </Link>
-      </CardActionArea>
-    </Card>
-  );
-};
-
 function Blogs() {
   return (
     <section className="my-12">
@@ -122,6 +69,7 @@ function Blogs() {
                 date={_.date}
                 title={_.title}
                 src={_.src}
+                firstImageBig={true}
               />
             ))}
         </Box>

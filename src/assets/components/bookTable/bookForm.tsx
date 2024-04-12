@@ -42,9 +42,7 @@ const CREATE_BOOKING = gql`
   }
 `;
 function BookForm() {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWRiYWQ1YmFiMDBmNDliNzFhYTdmNTgiLCJ1c2VyUm9sZSI6ImFkbWluIiwiaWF0IjoxNzA5MTc0MDgxLCJleHAiOjE3MDkxNzc2ODF9.iX3bCsmaX1dADo0Vmoi9ADu258VkbAzksE33Aex4qlw";
-
+  const token = localStorage.getItem("token");
   const [formData, setFormData] = useState({
     tableId: "65dfcbb672c60e7b1371164b",
     time: "",
@@ -121,6 +119,16 @@ function BookForm() {
             authorization: token ? `Bearer ${token}` : "",
           },
         },
+      });
+      setFormData({
+        tableId: "65dfcbb672c60e7b1371164b",
+        time: "",
+        date: "",
+        partySize: "",
+        specialRequests: "",
+        status: "pending",
+        name: "",
+        phone: "",
       });
       console.log("Created booking ID:", data.createBooking._id);
       // Reset form fields or navigate to another page if needed

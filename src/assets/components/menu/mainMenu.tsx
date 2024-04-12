@@ -1,5 +1,5 @@
 import { Box, Container, Typography, Button, Skeleton } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import MainMenuCard from "./mainMenuCard";
 
@@ -50,11 +50,11 @@ function MainMenu() {
 
     refetch({ searchLimit, searchOffset, category: searchCategory });
   };
-  useEffect(() => {
-    if (data) {
-      //   console.log(data.getAllMenuItems);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     //   console.log(data.getAllMenuItems);
+  //   }
+  // }, [data]);
 
   const dataFilters = [
     { title: "All", category: "" },
