@@ -1,7 +1,7 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, RouteProps } from "react-router-dom";
 import { useAuth } from "../context/auth";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute: React.FC<RouteProps> = ({ children }) => {
   const { isAuthenticated } = useAuth();
   const userState = isAuthenticated();
   // console.log(userState);
