@@ -8,7 +8,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import { BiPencil, BiPlus, BiTrash } from "react-icons/bi";
 import { useAuth } from "../context/auth";
@@ -34,7 +34,7 @@ const initialRows = [
 
 const ClientDashboard = () => {
   const { token } = useAuth();
-  const { id } = useParams();
+  // const { id } = useParams();
   interface Customer {
     id: number;
     name: string;
@@ -120,6 +120,8 @@ const ClientDashboard = () => {
       <div className="h-[400px] w-full">
         <DataGrid rows={rows} columns={columns} />
       </div>
+      {loading && <h2>loading</h2>}
+      {error && <h2>error</h2>}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>
           {customerData.id ? "Edit Customer" : "Add Customer"}

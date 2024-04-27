@@ -1,5 +1,12 @@
 import { useMutation, gql } from "@apollo/client";
-import { Box, Button, FormGroup, FormLabel, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormGroup,
+  FormLabel,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +24,7 @@ function LoginForm() {
     email: "",
     password: "",
   });
-  const [login] = useMutation(CREATE_CONTACT);
+  const [login, { error }] = useMutation(CREATE_CONTACT);
 
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (
     event
@@ -44,7 +51,9 @@ function LoginForm() {
       }
     } catch (error: unknown) {
       const typedError = error as Error;
-      console.log(typedError.message);
+      if (typedError.message === "Invalid credentials") {
+        console.log(typedError.message);
+      }
       // console.log(error);
       console.error("Error Logging:", error);
     }
@@ -92,7 +101,11 @@ function LoginForm() {
             placeholder="Password"
           />
         </FormGroup>
-
+        {error && (
+          <Typography className="mx-auto font-bold capitalize text-[#AD343E]">
+            invalid user name or password
+          </Typography>
+        )}
         <Button
           type="submit"
           className="bg-[#AD343E] text-white capitalize font-bold text-base tracking-wider col-span-2 rounded-full py-3 mt-3"
