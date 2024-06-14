@@ -1,71 +1,80 @@
-import {
-  Box,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-} from "@mui/material";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Box, Tabs, Tab, Container } from "@mui/material";
+import { Route, Routes, Link } from "react-router-dom";
 import ReservationsTable from "../components/dashboard/table";
-import { useState } from "react";
+import ProfileContent from "../components/dashboard/profileContent";
+import { LuTimerReset } from "react-icons/lu";
+import { GiEgyptianProfile } from "react-icons/gi";
 
-const ClientDashboard = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+// Replace with your user data fetching logic (e.g., API call)
+// function getUserData() {
+//   // Simulate fetching user data
+//   return {
+//     name: "John Doe",
+//     email: "john.doe@example.com",
+//     phone: "+1234567890",
+//   };
+// }
 
-  const handleSidebarToggle = () => {
-    setSidebarOpen(!sidebarOpen);
+// interface User {
+//   name: string;
+//   email: string;
+//   phone: string;
+// }
+
+const ClientDashboard: React.FC = () => {
+  const [selectedTab, setSelectedTab] = useState(0);
+  // const [userData, setUserData] = useState<User | undefined>(undefined);
+
+  useEffect(() => {
+    // const fetchedData = getUserData();
+    // setUserData(fetchedData);
+  }, []); // Empty dependency array to fetch data only once on component mount
+
+  const handleChange = (
+    event: React.ChangeEvent<unknown>,
+    newSelectedTab: number
+  ) => {
+    setSelectedTab(newSelectedTab);
   };
-
   return (
-    <Router>
-      <Box sx={{ display: "flex", flexDirection: "row" }}>
-        <Drawer
-          variant="permanent"
-          open={sidebarOpen}
-          PaperProps={{
-            sx: {
-              width: 240,
-              flexShrink: 0,
-            },
-          }}
+    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <Container className="md:flex">
+        <Tabs
+          orientation="vertical"
+          variant="fullWidth"
+          value={selectedTab}
+          onChange={handleChange}
+          sx={{ borderRight: (theme) => `1px solid ${theme.palette.divider}` }}
         >
-          <List>
-            <ListItem button onClick={handleSidebarToggle}>
-              <ListItemIcon>
-                <i className="fas fa-tachometer-alt" />
-              </ListItemIcon>
-              <ListItemText primary="Profile" />
-            </ListItem>
-            {/* Add more links here */}
-          </List>
-        </Drawer>
+          <Tab
+            icon={<LuTimerReset fontSize="40" />}
+            title="Reservations"
+            aria-label="Reservations"
+            className="mt-3"
+            value={0}
+            component={Link}
+            to="/dashboard/"
+          />
+          <Tab
+            icon={<GiEgyptianProfile fontSize="40" />}
+            title="Reservations"
+            className="mt-3"
+            component={Link}
+            to="/dashboard/profile"
+          />
+          {/* Add more tabs here */}
+        </Tabs>
 
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            p: 3,
-            pt: 0,
-          }}
-        >
-          <nav>
-            <ul>
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-              {/* Add more links here */}
-            </ul>
-          </nav>
-
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Routes>
-            <Route path="/profile" element={<ReservationsTable />} />
-            {/* Add more routes here */}
+            <Route path="/" element={<ReservationsTable />} />
+            <Route path="/profile" element={<ProfileContent />} />
             <Route path="*" element={<div>Page not found</div>} />
           </Routes>
         </Box>
-      </Box>
-    </Router>
+      </Container>
+    </Box>
   );
 };
 

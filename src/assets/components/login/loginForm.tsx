@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
 const CREATE_CONTACT = gql`
   mutation login($email: String!, $password: String!) {
@@ -19,6 +20,7 @@ const CREATE_CONTACT = gql`
 `;
 
 function LoginForm() {
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -45,7 +47,8 @@ function LoginForm() {
         },
       });
       if (data && data.login && data.login.token) {
-        localStorage.setItem("token", data.login.token);
+        signIn(data.login.token);
+        // localStorage.setItem("token", data.login.token);
         // console.log(localStorage.token);
         navigate("/");
       }

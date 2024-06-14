@@ -1,20 +1,26 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import { CiMenuFries as MenuIcon } from "react-icons/ci";
-
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import { SiProbot as AdbIcon } from "react-icons/si";
-
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import List from "@mui/material/List";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth";
+import { FaUserAstronaut } from "react-icons/fa";
+import {
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Box,
+  Toolbar,
+  AppBar,
+  IconButton,
+  Typography,
+  Container,
+  Button,
+  Tooltip,
+  SwipeableDrawer,
+  List,
+} from "@mui/material";
+import { BiLogOutCircle } from "react-icons/bi";
+import { FcSettings } from "react-icons/fc";
 
 const pages = [
   { name: "Home", to: "/" },
@@ -26,10 +32,18 @@ const pages = [
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, signOut } = useAuth();
   const userState = isAuthenticated();
 
   const [drawer, setDrawer] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleOpenDrawer = () => {
     setDrawer(true);
@@ -109,16 +123,51 @@ function ResponsiveAppBar() {
                 <Button
                   component={Link}
                   to={userState ? "/book-table" : "/signup"}
-                  className="capitalize border border-black border-solid rounded-full text-black px-5"
+                  className="capitalize hidden md:inline-flex border border-black border-solid rounded-full text-black px-5"
                   variant="text"
                 >
                   {userState ? "book a table" : "Sign Up"}
                 </Button>
               </Tooltip>
+              {userState && (
+                <Tooltip title={"Dashboard"}>
+                  <IconButton
+                    onClick={handleClick}
+                    aria-controls={open ? "account-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    className="capitalize ms-3 border border-black border-solid rounded-full text-black"
+                  >
+                    <FaUserAstronaut />
+                  </IconButton>
+                </Tooltip>
+              )}
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
+      <Menu
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+      >
+        <MenuItem onClick={handleClose} component={Link} to="/dashboard">
+          <ListItemIcon>
+            <FcSettings />
+          </ListItemIcon>
+          Settings
+        </MenuItem>
+        <MenuItem onClick={signOut} component={Link} to="/dashboard">
+          <ListItemIcon>
+            <BiLogOutCircle />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
+      </Menu>
 
       <SwipeableDrawer
         disableBackdropTransition={!iOS}

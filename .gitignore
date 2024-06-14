@@ -24,3 +24,4 @@ cat.mp4
 *.sln
 *.sw?
 .env
+src/assets/components/dashboard/test.json
