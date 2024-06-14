@@ -35,6 +35,7 @@ const ClientDashboard: React.FC = () => {
     event: React.ChangeEvent<unknown>,
     newSelectedTab: number
   ) => {
+    console.log(event);
     setSelectedTab(newSelectedTab);
   };
   return (

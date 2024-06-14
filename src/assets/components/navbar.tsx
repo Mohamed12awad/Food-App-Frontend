@@ -24,23 +24,24 @@ import { FcSettings } from "react-icons/fc";
 
 const pages = [
   { name: "Home", to: "/" },
-  { name: "about", to: "/about" },
-  { name: "menu", to: "/menu" },
-  { name: "blogs", to: "/blogs" },
-  { name: "contact", to: "/contact-us" },
+  { name: "About", to: "/about" },
+  { name: "Menu", to: "/menu" },
+  { name: "Blogs", to: "/blogs" },
+  { name: "Contact", to: "/contact-us" },
 ];
-// const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
   const { isAuthenticated, signOut } = useAuth();
   const userState = isAuthenticated();
 
   const [drawer, setDrawer] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -51,6 +52,7 @@ function ResponsiveAppBar() {
   const handleCloseDrawer = () => {
     setDrawer(false);
   };
+
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -73,7 +75,7 @@ function ResponsiveAppBar() {
               noWrap
               component={Link}
               to="/"
-              className="hidden md:flex text-2xl  main-font italic mr-3 font-bold no-underline text-inherit"
+              className="hidden md:flex text-2xl main-font italic mr-3 font-bold no-underline text-inherit"
             >
               Bistro Bliss
             </Typography>
