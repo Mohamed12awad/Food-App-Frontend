@@ -6,6 +6,8 @@ import {
   FormLabel,
   TextField,
   Typography,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +28,7 @@ function LoginForm() {
     email: "",
     password: "",
   });
-  const [login, { error }] = useMutation(CREATE_CONTACT);
+  const [login, { loading, error }] = useMutation(CREATE_CONTACT);
 
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (
     event
@@ -48,8 +50,6 @@ function LoginForm() {
       });
       if (data && data.login && data.login.token) {
         signIn(data.login.token);
-        // localStorage.setItem("token", data.login.token);
-        // console.log(localStorage.token);
         navigate("/");
       }
     } catch (error: unknown) {
@@ -57,12 +57,18 @@ function LoginForm() {
       if (typedError.message === "Invalid credentials") {
         console.log(typedError.message);
       }
-      // console.log(error);
       console.error("Error Logging:", error);
     }
   };
+
   return (
     <div className="py-8 w-3/4 md:w-1/2 bg-white rounded-xl shadow-lg z-50 relative mx-auto">
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Box
         component="form"
         className="grid gap-5 grid-cols-1 px-5"
